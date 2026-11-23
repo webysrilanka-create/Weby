@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#141715">
+<title>Five hero reveals</title>
+<style>
+  html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d100e}
+  main{position:fixed;inset:0}
+  canvas{display:block;width:100%;height:100%}
+</style>
+</head>
+<body>
+<main aria-label="Animated hotel and travel heroes">
+  <canvas width="875" height="506" role="img" aria-label="Five animated hero designs"></canvas>
+</main>
+<script>
+  const scenes = [{"title":"Resort Kaskady","subtitle":"Poolside","width":875,"height":506,"opening":"iris","tint":"#37483c","base":"image-265f40abfd7cffa8.png","parts":[{"x":390,"y":191,"effect":"rise","start":420,"duration":850,"src":"image-77b194e7a17ba6f5.png"},{"x":268,"y":242,"effect":"rise","start":570,"duration":1150,"src":"image-16f9bf310050c1e7.png"},{"x":343,"y":312,"effect":"rise","start":900,"duration":850,"src":"image-7fbf95fbedb6031a.png"},{"x":404,"y":400,"effect":"fade","start":1110,"duration":850,"src":"image-dce2c4ee2ab252f3.png"},{"x":30,"y":420,"effect":"fade","start":1250,"duration":850,"src":"image-52e7056d249da8e4.png"}]},{"title":"Ventures","subtitle":"Mountain passage","width":977,"height":544,"opening":"west","tint":"#263734","base":"image-c1e43b0b0c9e8862.png","parts":[{"x":97,"y":117,"effect":"rise","start":210,"duration":850,"src":"image-ebcca5d43764e9ae.png"},{"x":98,"y":149,"effect":"rise","start":300,"duration":850,"src":"image-8d425e4522d8f75c.png"},{"x":97,"y":198,"effect":"rise","start":440,"duration":850,"src":"image-07c8cfb11c27f51c.png"},{"x":98,"y":260,"effect":"rise","start":700,"duration":850,"src":"image-4cac146605ee5957.png"},{"x":96,"y":318,"effect":"rise","start":910,"duration":850,"src":"image-b13f7b2347c6276e.png"},{"x":212,"y":317,"effect":"fade","start":970,"duration":850,"src":"image-2050c9ccb805835b.png"},{"x":710,"y":120,"effect":"portrait","start":550,"duration":1150,"src":"image-33f7759444a69683.png"},{"x":887,"y":120,"effect":"portrait","start":735,"duration":1100,"src":"image-e53bd0f4b65da1b0.png"},{"x":855,"y":219,"effect":"fade","start":1080,"duration":850,"src":"image-8b7ce5a5cad05888.png"},{"x":106,"y":439,"effect":"rise","start":1120,"duration":850,"src":"image-e314f5c09de36d27.png"},{"x":286,"y":439,"effect":"rise","start":1240,"duration":850,"src":"image-60026e7cda1d10e5.png"}]},{"title":"Interio","subtitle":"Arched interiors","width":685,"height":426,"opening":"theatre","tint":"#211f1c","base":"image-c4fe7222e3bc097e.png","parts":[{"x":43,"y":89,"effect":"arch","start":180,"duration":1390,"src":"image-04e3d239deb97a84.png"},{"x":444,"y":82,"effect":"arch","start":340,"duration":1480,"src":"image-1b1fd5688f0a680b.png"},{"x":204,"y":91,"effect":"fade","start":435,"duration":850,"src":"image-dd1b6fba8b9a64cc.png"},{"x":202,"y":108,"effect":"rise","start":530,"duration":850,"src":"image-97c98d55abb86cd9.png"},{"x":202,"y":146,"effect":"rise","start":660,"duration":850,"src":"image-704b1b46189da217.png"},{"x":202,"y":183,"effect":"rise","start":795,"duration":850,"src":"image-4c407295308625e8.png"},{"x":355,"y":185,"effect":"portrait","start":880,"duration":850,"src":"image-1ec76335e00f0213.png"},{"x":202,"y":230,"effect":"rise","start":1000,"duration":850,"src":"image-d8f7ea3ded9ce911.png"},{"x":202,"y":286,"effect":"rise","start":1130,"duration":850,"src":"image-71ec4f6e6b4152b8.png"},{"x":75,"y":369,"effect":"fade","start":1310,"duration":850,"src":"image-754096a9aada2730.png"}]},{"title":"Mintwint","subtitle":"Alpine night","width":1002,"height":644,"opening":"sky","tint":"#132f43","base":"image-93ed84b095039679.png","parts":[{"x":290,"y":126,"effect":"rise","start":480,"duration":1040,"src":"image-6246e9b98b4868df.png"},{"x":414,"y":177,"effect":"rise","start":640,"duration":1040,"src":"image-e9646b62a03868a9.png"},{"x":347,"y":237,"effect":"rise","start":870,"duration":850,"src":"image-4cd330eccd8c7949.png"},{"x":291,"y":285,"effect":"rise","start":1020,"duration":850,"src":"image-fe327e488e590825.png"},{"x":451,"y":285,"effect":"rise","start":1070,"duration":850,"src":"image-195d7f624d753088.png"},{"x":593,"y":285,"effect":"rise","start":1120,"duration":850,"src":"image-6205f4558ec875d2.png"},{"x":621,"y":284,"effect":"fade","start":1170,"duration":850,"src":"image-ba3a0559651ff8cb.png"},{"x":71,"y":542,"effect":"fade","start":1250,"duration":850,"src":"image-207214e7ed5c777c.png"},{"x":596,"y":540,"effect":"rise","start":1370,"duration":850,"src":"image-7ee1ecf0f7a04fcc.png"}]},{"title":"Fortwill","subtitle":"Galle from above","width":1906,"height":914,"opening":"horizon","tint":"#163a3b","base":"image-b1b06761f0b759cf.png","parts":[{"x":814,"y":284,"effect":"fade","start":400,"duration":850,"src":"image-70759da445bc883d.png"},{"x":607,"y":321,"effect":"rise","start":530,"duration":1150,"src":"image-b4d66a969140bd43.png"},{"x":725,"y":480,"effect":"rise","start":710,"duration":1150,"src":"image-a716c9125944f4e8.png"},{"x":884,"y":625,"effect":"rise","start":1060,"duration":850,"src":"image-d07f520a4780c378.png"},{"x":81,"y":842,"effect":"fade","start":1320,"duration":850,"src":"image-7178d1bb55e9ac87.png"},{"x":1695,"y":847,"effect":"fade","start":1380,"duration":850,"src":"image-fd5ff80c7f4310ad.png"}]}];
+  const display = document.querySelector('canvas');
+  const screen = display.getContext('2d',{alpha:false});
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d',{alpha:false});
+  const prefersStill = matchMedia('(prefers-reduced-motion:reduce)');
+  const duration = 1160;
+  const sceneLength = 2000;
+  const slideLength = 540;
+  const cache = new Map();
+  const ease = t => 1 - (1-t)**3;
+  const progress = value => Math.min(1,Math.max(0,value));
+  let assets, startTime, elapsed = 0, paused = false;
+  let raf = 0, timer = 0, lastIndex = -1;
+
+  const imageQueue=[];
+  let activeImages=0;
+  function pumpImages(){
+    while(activeImages<4 && imageQueue.length){
+      activeImages++;
+      imageQueue.shift()();
+    }
+  }
+  function imageFrom(uri){
+    return new Promise((resolve,reject)=>{
+      imageQueue.push(()=>{
+        const image=new Image();
+        let retries=0;
+        const finish=()=>{activeImages--;pumpImages();};
+        image.onload=()=>{finish();resolve(image);};
+        image.onerror=()=>{
+          if(retries++<2){setTimeout(()=>{image.src=uri;},250*retries);return;}
+          finish();reject(new Error('Could not load preview image: '+uri));
+        };
+        image.src=uri;
+      });
+      pumpImages();
+    });
+  }
+  async function prepare(index) {
+    if(!cache.has(index)){
+      const s=scenes[index];
+      cache.set(index,Promise.all([imageFrom(s.base),...s.parts.map(part=>imageFrom(part.src))]).then(([base,...layers])=>{
+        const still=document.createElement('canvas');still.width=s.width;still.height=s.height;
+        const brush=still.getContext('2d');
+        brush.drawImage(base,0,0);
+        layers.forEach((img,i)=>brush.drawImage(img,s.parts[i].x,s.parts[i].y));
+        return {s,base,layers,still};
+      }));
+    }
+    return cache.get(index);
+  }
+
+  function opening(s,t) {
+    const p=ease(progress(t/1450)), w=s.width, h=s.height;
+    let x=0,y=0,width=w,height=h;
+    switch(s.opening){
+      case 'iris': x=w*.32*(1-p);y=h*.105*(1-p);width=w-2*x;height=h-2*y;break;
+      case 'west': width=w*(.13+.87*p);break;
+      case 'horizon': y=h*.47*(1-p);height=h-2*y;break;
+      case 'sky': y=h*.33*(1-p);height=h-y;break;
+      case 'theatre':ctx.globalAlpha=.45+.55*p;break;
+    }
+    ctx.beginPath();ctx.rect(x,y,width,height);ctx.clip();
+  }
+  function drawPart(s,part,image,time) {
+    const raw=progress((time-part.start)/part.duration);
+    if(!raw)return;
+    const p=ease(raw), {x,y}=part, w=image.width,h=image.height;
+    ctx.save();
+    ctx.globalAlpha*=Math.min(1,raw*(part.effect==='fade'?1.5:3.6));
+    ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
+    switch(part.effect){
+      case 'rise':
+        ctx.drawImage(image,x,y+(1-p)*Math.min(h*.79,s.height*.067));
+        break;
+      case 'arch':
+      case 'portrait':{
+        const fromTop=part.effect==='arch';
+        ctx.beginPath();ctx.rect(x,fromTop?y:y+h*(1-p),w,h*p);ctx.clip();
+        const z=1+(1-p)*.085;
+        ctx.drawImage(image,x-(z-1)*w*.5,y-(z-1)*h*.5,w*z,h*z);
+        break;
+      }
+      default:ctx.drawImage(image,x,y);
+    }
+    ctx.restore();
+  }
+  function paint(asset,time,sliding=false) {
+    const {s,base,layers,still}=asset,w=s.width,h=s.height;
+    if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
+    if(time>=duration){ctx.drawImage(still,0,0);return}
+    ctx.fillStyle=s.tint;ctx.fillRect(0,0,w,h);
+    time*=2;
+    ctx.save();if(!sliding)opening(s,time);
+    const z=1+(1-ease(progress(time/2050)))*(s.opening==='theatre'?.009:.036);
+    ctx.drawImage(base,-(z-1)*w*.5,-(z-1)*h*.5,w*z,h*z);
+    s.parts.forEach((part,i)=>drawPart(s,part,layers[i],time));
+    ctx.restore();
+  }
+  function contain(brush,image,offset=0){
+    const {width,height}=brush.canvas;
+    // Trim the border baked into the Interio screenshot.
+    const trim = image.width===685 && image.height===426 ? 2 : 0;
+    brush.drawImage(image,trim,trim,image.width-2*trim,image.height-2*trim,offset,0,width,height);
+  }
+  function compose(brush,incoming,previous,time,direction=1){
+    const {width:w,height:h}=brush.canvas;
+    brush.fillStyle='#0d100e';brush.fillRect(0,0,w,h);
+    if(!previous||time>=slideLength){contain(brush,incoming);return}
+    const t=progress(time/slideLength);
+    const p=t*t*(3-2*t);
+    contain(brush,previous,-direction*w*.12*p);
+    brush.fillStyle='rgba(9,14,11,'+(.15*p)+')';brush.fillRect(0,0,w,h);
+    brush.save();
+    brush.beginPath();brush.rect(direction>0?w*(1-p):0,0,w*p,h);brush.clip();
+    brush.fillStyle='#0d100e';brush.fillRect(0,0,w,h);
+    contain(brush,incoming,direction*w*.12*(1-p));
+    brush.restore();
+  }
+  let viewportWidth=0, viewportHeight=0;
+  function measureDisplay(){
+    const bounds=display.getBoundingClientRect(), density=Math.min(2,window.devicePixelRatio||1);
+    viewportWidth=Math.max(1,Math.round(bounds.width*density));
+    viewportHeight=Math.max(1,Math.round(bounds.height*density));
+  }
+  measureDisplay();
+  function drawGallery(asset,previous,time,direction){
+    const w=viewportWidth,h=viewportHeight;
+    if(display.width!==w||display.height!==h){display.width=w;display.height=h}
+    paint(asset,time,Boolean(previous));
+    compose(screen,canvas,previous,time,direction);
+  }
+  let hostVisible=true;
+  function render(now) {
+    cancelAnimationFrame(raf);
+    clearTimeout(timer);
+    if(!assets || document.hidden || !hostVisible)return;
+    if(!paused)elapsed=Math.max(0,now-startTime);
+    const slot=Math.floor(elapsed/sceneLength);
+    const index=slot%assets.length;
+    const asset=assets[index];
+    const still=prefersStill.matches;
+    const previous=slot>0 && !still?assets[(index+assets.length-1)%assets.length].still:null;
+    const time=elapsed%sceneLength;
+    drawGallery(asset,previous,still?duration:time,1);
+    if(index!==lastIndex){
+      display.setAttribute('aria-label',asset.s.title+' — '+asset.s.subtitle);
+      lastIndex=index;
+    }
+    if(paused)return;
+    if(time<duration && !still)raf=requestAnimationFrame(render);
+    else timer=setTimeout(()=>render(performance.now()),sceneLength-time);
+  }
+  function pausePlayback(value){
+    if(!assets)return;
+    const now=performance.now();
+    if(!paused)elapsed=now-startTime;
+    paused=value;
+    startTime=now-elapsed;
+    render(now);
+  }
+  document.addEventListener('keydown',event=>{
+    if(!assets || event.altKey || event.metaKey || event.ctrlKey)return;
+    if(event.code==='Space'){
+      event.preventDefault();
+      if(!event.repeat)pausePlayback(!paused);
+    }else if(event.key==='ArrowLeft' || event.key==='ArrowRight'){
+      event.preventDefault();
+      const slot=Math.floor(elapsed/sceneLength);
+      const next=(slot+(event.key==='ArrowLeft'?-1:1)+assets.length)%assets.length;
+      elapsed=(next+assets.length)*sceneLength;
+      startTime=performance.now()-elapsed;
+      render(performance.now());
+    }
+  });
+  new ResizeObserver(()=>{measureDisplay();render(performance.now());}).observe(display);
+  window.addEventListener('message',event=>{
+    if(event.source!==parent || event.data?.type!=='weby-hero-visibility')return;
+    hostVisible=Boolean(event.data.visible);
+    render(performance.now());
+  });
+  document.addEventListener('visibilitychange',()=>render(performance.now()));
+  prefersStill.addEventListener('change',()=>pausePlayback(prefersStill.matches));
+  Promise.all(scenes.map((_,i)=>prepare(i))).then(ready=>{
+    assets=ready;
+    paused=prefersStill.matches;
+    startTime=performance.now();
+    render(startTime);
+  });
+</script>
+</body>
+</html>
