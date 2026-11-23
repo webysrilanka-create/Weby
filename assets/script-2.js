@@ -5,7 +5,7 @@
   const welcome = document.querySelector('.welcome');
   const word = welcome.querySelector('.welcome-word');
   const ink = welcome.querySelector('.welcome-ink');
-  const destination = document.querySelector('.logo-name');
+  const destination = document.querySelector('.nav .logo img');
   const listeners = new AbortController();
   const options = { signal: listeners.signal };
   const animations = [];
@@ -32,8 +32,9 @@
     const assets = Promise.allSettled([
       document.fonts.ready,
       document.querySelector('.logo img').decode(),
-      ...Array.from(document.querySelectorAll('.display img'), image => image.decode())
+      ...Array.from(welcome.querySelectorAll('img'), image => image.decode())
     ]);
+    await Promise.allSettled([...welcome.querySelectorAll('img')].map(image=>image.decode()));
     await Promise.all([
       play(ink, [
         { maskPosition: '100% 0', webkitMaskPosition: '100% 0', filter: 'blur(8px)', opacity: 0, transform: 'translateY(10px)' },
@@ -44,14 +45,17 @@
     ]);
     if (listeners.signal.aborted) return;
 
-    const from = word.getBoundingClientRect();
+    const from = welcome.querySelector('.welcome-symbol').getBoundingClientRect();
     const to = destination.getBoundingClientRect();
     const scale = to.width / from.width;
     const landing = 'translate(' + (to.left - from.left) + 'px, ' +
       (to.top + (to.height - from.height * scale) / 2 - from.top) + 'px) scale(' + scale + ')';
     window.addEventListener('resize', finish, options);
     const ease = 'cubic-bezier(.18, .75, .2, 1)';
+    welcome.querySelector('.welcome-tail').style.clipPath='inset(-24px -24px -24px 0)';
     await Promise.all([
+      play(welcome.querySelector('.welcome-bullet'), [{opacity:1},{opacity:0}], {duration:240}),
+      play(welcome.querySelector('.welcome-tail img'), [{ transform:'translateX(0)' }, { transform:'translateX(-105%)' }], {duration:650,easing:'cubic-bezier(.65,0,.2,1)'}),
       play(word, [{ transform: 'none' }, { transform: landing }], {
         duration: 900, easing: 'cubic-bezier(.65, 0, .2, 1)'
       }),
