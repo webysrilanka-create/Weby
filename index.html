@@ -11,7 +11,19 @@ if ((!location.hash || location.hash === '#top') &&
 <link rel="icon" type="image/svg+xml" sizes="any" href="assets/image-d8620d61df0d3180.svg"><meta name="description" content="Weby is an AI-powered web studio. We design and build sharp, fast websites for small businesses.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:opsz,wght@14..32,300..700&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles-1.css"></head><body>
+<link rel="stylesheet" href="assets/styles-1.css?v=2"><link rel="preload" as="image" href="assets/laptop-poster.jpg" fetchpriority="high"><script>
+window.addEventListener('message', event => {
+  const frame=document.querySelector('.laptop-collection');
+  if(frame && event.source===frame.contentWindow && event.data?.type==='weby-hero-ready')
+    frame.classList.add('is-ready');
+});
+</script><script>
+window.addEventListener('message', event => {
+  const frame=document.querySelector('.laptop-collection');
+  if(frame && event.source===frame.contentWindow && event.data?.type==='weby-hero-ready')
+    frame.classList.add('is-ready');
+});
+</script></head><body>
 <div class="welcome" aria-hidden="true">
   <div class="welcome-backdrop"></div>
   <span class="welcome-word">Weby<span class="welcome-ink">Weby</span></span>
@@ -22,7 +34,7 @@ if ((!location.hash || location.hash === '#top') &&
 <div class="stage-edge" aria-hidden="true"></div>
 <div class="device-stage" role="img" aria-label="A laptop rotating to reveal a sequence of website designs">
   <div class="laptop">
-    <div class="lid"><div class="display"><iframe class="laptop-collection" title="Animated hero collection" tabindex="-1" src="assets/hero-collection.html"></iframe></div></div>
+    <div class="lid"><div class="display"><img class="laptop-poster" src="assets/laptop-poster.jpg" fetchpriority="high" alt=""><iframe class="laptop-collection" title="Animated hero collection" tabindex="-1" src="assets/hero-collection.html?v=2"></iframe></div></div>
     <div class="keyboard"></div>
   </div>
 </div>
@@ -106,13 +118,13 @@ if ((!location.hash || location.hash === '#top') &&
   </div>
   <span>Build to Stand Out</span>
 </footer>
-</section></main><div class="preview-sources" hidden><img alt="Resort Kaskady" src="assets/image-228ab3e24e77e2da.png"><img alt="Ventures" src="assets/image-b7adef510d73587b.png"><img alt="Interio" src="assets/image-962aea94cce6f8ed.png"><img alt="Mintwint" src="assets/image-17b873e0b6781ca8.png"><img alt="Fortwill" src="assets/image-9da337ec3e08f3a5.png"></div>
+</section></main><div class="preview-sources" hidden><img alt="Resort Kaskady" data-src="assets/image-228ab3e24e77e2da.png"><img alt="Ventures" data-src="assets/image-b7adef510d73587b.png"><img alt="Interio" data-src="assets/image-962aea94cce6f8ed.png"><img alt="Mintwint" data-src="assets/image-17b873e0b6781ca8.png"><img alt="Fortwill" data-src="assets/image-9da337ec3e08f3a5.png"></div>
 <script src="assets/script-1.js"></script>
 <script src="assets/script-2.js"></script>
 <script src="assets/script-3.js"></script>
 <script src="assets/script-4.js"></script>
-<script src="assets/script-5.js"></script>
+<script src="assets/script-5.js?v=2"></script>
 
 <script src="assets/script-6.js"></script>
 <script src="assets/script-7.js"></script>
-<script src="assets/hero-visibility.js"></script></body></html>
+<script src="assets/hero-visibility.js?v=2"></script><script src="assets/hero-visibility.js?v=2"></script></body></html>

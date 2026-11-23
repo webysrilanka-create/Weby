@@ -3,6 +3,19 @@
   const gallery = document.querySelector('.preview-gallery');
   let canvas = gallery.querySelector('canvas');
   const images = [...document.querySelectorAll('.preview-sources img')];
+  if(!document.querySelector('.laptop-collection').classList.contains('is-ready')){
+    await new Promise(resolve=>{
+      let observer;
+      const done=()=>{observer?.disconnect();window.removeEventListener('message',onReady);resolve();};
+      const onReady=event=>{
+        if(event.source===document.querySelector('.laptop-collection').contentWindow && event.data?.type==='weby-hero-ready')done();
+      };
+      window.addEventListener('message',onReady);
+      observer=new IntersectionObserver(entries=>{if(entries[0].isIntersecting)done();},{rootMargin:'600px'});
+      observer.observe(gallery);
+    });
+  }
+  images.forEach(image=>{if(image.dataset.src)image.src=image.dataset.src;});
   const frames = (await Promise.all(images.map(async image => {
     try { await image.decode(); } catch { return null; }
     const texture = document.createElement('canvas');

@@ -158,10 +158,19 @@
     const slot=Math.floor(elapsed/sceneLength);
     const index=slot%assets.length;
     const asset=assets[index];
+    // Hold the last complete scene if the next scene is still downloading.
+    // Keep the timeline at the boundary so its reveal starts from the beginning.
+    if(!asset){
+      elapsed=slot*sceneLength;
+      startTime=now-elapsed;
+      timer=setTimeout(()=>render(performance.now()),100);
+      return;
+    }
     const still=prefersStill.matches;
     const previous=slot>0 && !still?assets[(index+assets.length-1)%assets.length].still:null;
     const time=elapsed%sceneLength;
     drawGallery(asset,previous,still?duration:time,1);
+    if(lastIndex===-1)parent.postMessage({type:'weby-hero-ready'},'*');
     if(index!==lastIndex){
       display.setAttribute('aria-label',asset.s.title+' — '+asset.s.subtitle);
       lastIndex=index;
@@ -200,12 +209,18 @@
   });
   document.addEventListener('visibilitychange',()=>render(performance.now()));
   prefersStill.addEventListener('change',()=>pausePlayback(prefersStill.matches));
-  Promise.all(scenes.map((_,i)=>prepare(i))).then(ready=>{
-    assets=ready;
+  // Start after the first scene, rather than waiting for every design.
+  prepare(0).then(async first=>{
+    assets=new Array(scenes.length);
+    assets[0]=first;
     paused=prefersStill.matches;
     startTime=performance.now();
     render(startTime);
-  });
+    for(let i=1;i<scenes.length;i++){
+      try { assets[i]=await prepare(i); }
+      catch { assets[i]=assets[i-1]; }
+    }
+  }).catch(()=>{ /* The parent keeps the complete poster visible. */ });
 </script>
 </body>
 </html>
